@@ -124,6 +124,7 @@ class _StoryScreenState extends State<StoryScreen> {
                   leading: Icon(Icons.not_started),
                   title: Text('New Game'),
                   onTap: () {
+                    progress(1);
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
@@ -213,6 +214,7 @@ class _StoryScreenState extends State<StoryScreen> {
                             //switch page
 
                             if (message == "Start Again?") {
+                              progress(1);
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -248,6 +250,7 @@ class _StoryScreenState extends State<StoryScreen> {
                             } else if (node.left != null &&
                                 value.delta.dx < 0 &&
                                 message != node.right.value) {
+                              progress(1);
                               message = node.left.value;
                               swipe = Stream.value(1);
                             } else if (node.right != null &&
