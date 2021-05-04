@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:twain/constants.dart';
 import 'package:twain/story.dart';
 import 'package:loading_animations/loading_animations.dart';
-import '../constants.dart';
 import 'login_screen.dart';
-import '../constants.dart';
-import '../constants.dart';
-import '../constants.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class StoryScreen extends StatefulWidget {
   final String username, password;
@@ -16,7 +14,7 @@ class StoryScreen extends StatefulWidget {
 }
 
 class _StoryScreenState extends State<StoryScreen> {
-  int _selectedDestination = 0;
+  int selectedDestination = 0;
   late var node;
   Stream<int> swipe = Stream.value(0);
   late Story a;
@@ -29,6 +27,15 @@ class _StoryScreenState extends State<StoryScreen> {
     node = a.root;
     message = node.question;
     setState(() {});
+  }
+
+  void progress(int treeId) async {
+    Map data = {"treeId": treeId};
+    var auth = 'Basic ' +
+        base64Encode(utf8.encode('${widget.username}:${widget.password}'));
+    await http.post(Uri.http(url, 'api/createprogress'),
+        headers: {"Content-Type": "application/json", 'authorization': auth},
+        body: jsonEncode(data));
   }
 
   @override
@@ -147,7 +154,7 @@ class _StoryScreenState extends State<StoryScreen> {
                   leading: Icon(Icons.contact_support),
                   title: Text('About-Us'),
                   onTap: () {
-                    AboutUs();
+                    aboutUs();
                   },
                 ),
               ],
@@ -219,8 +226,9 @@ class _StoryScreenState extends State<StoryScreen> {
                                     (value.offset.dx >
                                         (MediaQuery.of(context).size.width /
                                             2.25)))) {
-                              _scrollUp();
                               node = node.left;
+                              progress(node.id);
+                              _scrollUp();
                             } else if (node.right != null &&
                                 message == node.right.value &&
                                 ((value.offset.dx <
@@ -229,8 +237,9 @@ class _StoryScreenState extends State<StoryScreen> {
                                     (value.offset.dx >
                                         (MediaQuery.of(context).size.width /
                                             2.25)))) {
-                              _scrollUp();
                               node = node.right;
+                              progress(node.id);
+                              _scrollUp();
                             }
                             setState(() {});
                           },
@@ -314,11 +323,11 @@ class _StoryScreenState extends State<StoryScreen> {
 
   void selectDestination(int index) {
     setState(() {
-      _selectedDestination = index;
+      selectedDestination = index;
     });
   }
 
-  Future<void> AboutUs() async {
+  Future<void> aboutUs() async {
     return showDialog<void>(
       context: context,
       barrierDismissible: true,
@@ -342,9 +351,7 @@ class _StoryScreenState extends State<StoryScreen> {
                       Text('+91-1234567890'),
                     ],
                   ),
-                  onTap: () {
-                    'callto:+91-1234567890';
-                  },
+                  onTap: () {},
                 ),
                 SizedBox(height: 6),
                 InkWell(
@@ -355,9 +362,7 @@ class _StoryScreenState extends State<StoryScreen> {
                       Text('abc@mail.com'),
                     ],
                   ),
-                  onTap: () {
-                    'mailto:abc@mail.com';
-                  },
+                  onTap: () {},
                 ),
               ],
             ),

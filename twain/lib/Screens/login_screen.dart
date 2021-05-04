@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<http.Response> login() async {
     var auth = 'Basic ' + base64Encode(utf8.encode('$_username:$_password'));
-    return await http.get(Uri.http('192.168.2.2:5000', 'api/resource'),
+    return await http.get(Uri.http(url, 'api/resource'),
         headers: <String, String>{'authorization': auth});
   }
 

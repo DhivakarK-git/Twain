@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const Color kPowder = Color(0xFFF7F9F6);
+const String url = '192.168.2.6:5000';
 const Color kCream = Color(0xFFEEF3EC);
 const Color kCamblue = Color(0xFF94C4B2);
 const Color kOpal = Color(0xFFAECBC3);
