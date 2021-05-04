@@ -1,10 +1,14 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:twain/constants.dart';
+
 class Node<T> {
   final String value, description, question;
+  int id;
   Node<T>? left, right;
-  Node(this.value, this.description, this.question, {this.left, this.right});
+  Node(this.id, this.value, this.description, this.question,
+      {this.left, this.right});
 }
 
 class Story {
@@ -13,21 +17,24 @@ class Story {
 
   Future<http.Response> fetch() async {
     var auth = 'Basic ' + base64Encode(utf8.encode('$_username:$_password'));
-    return await http.get(Uri.http('192.168.2.2:5000', 'api/fetchstories'),
+    return await http.get(Uri.http(url, 'api/fetchstories'),
         headers: <String, String>{'authorization': auth});
   }
 
   Story(this._username, this._password);
   Future<void> constructTree() async {
     final response = await fetch();
-    var temp = jsonDecode(response.body)['data'], id = [], node = [];
+    var temp = jsonDecode(response.body)['data'],
+        prog = jsonDecode(response.body)['progress'],
+        id = [],
+        node = [];
     List<int> parent = [];
     for (int i = 0; i < temp.length; i++) {
       id.add(temp[i][0] == null ? -1 : temp[i][0]);
       parent.add(temp[i][4] == null ? -1 : temp[i][4]);
     }
     for (int i = 0; i < id.length; i++) {
-      node.add(Node(temp[i][1], temp[i][2], temp[i][3]));
+      node.add(Node(i + 1, temp[i][1], temp[i][2], temp[i][3]));
     }
     for (int i = 1; i < id.length; i++) {
       if (id[i] % 2 == 0) {
@@ -36,7 +43,10 @@ class Story {
         node[parent[i] - 1].left = node[i];
       }
     }
-    root = node[0];
+    if (prog == null)
+      root = node[0];
+    else
+      root = node[prog - 1];
   }
 
 // void insert(var root, var temp, List parent, var id) {

@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:twain/constants.dart';
-import '../constants.dart';
 import 'login_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
@@ -22,7 +20,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       "email": "$_email",
       "password": "$_password1"
     };
-    return await http.post(Uri.http('192.168.2.2:5000', 'api/users'),
+    return await http.post(Uri.http(url, 'api/users'),
         headers: {"Content-Type": "application/json"}, body: jsonEncode(data));
   }
 

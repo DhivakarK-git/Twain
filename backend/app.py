@@ -29,7 +29,10 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), index=True)
     email = db.Column(db.String(120), unique=True)
-    password_hash = db.Column(db.String(64))
+    password_hash = db.Column(db.String(128))
+
+    def __str__(self):
+        return self.username
 
     def hash_password(self, password):
         self.password_hash = pwd_context.encrypt(password)
@@ -91,6 +94,7 @@ class Progress(db.Model):
     user = db.relationship(User, backref='progress')
 
     tree_id = db.Column(db.Integer(), db.ForeignKey(Tree.id), nullable=True)
+    tree = db.relationship(Tree, backref='progress')
     # tree = db.relationship(Tree, backref='node')
     # tree = db.relationship('Tag', secondary=post_tags_table)
 
@@ -122,7 +126,28 @@ def fetch_stories():
     stories = Tree.query.all()
     for story in stories:
         temp.append([story.id,story.value, story.description,story.question, story.parent_id])
-    return jsonify({'data': temp})
+    try:
+        progress=Progress.query.filter_by(user_id=g.user.id).first()
+        return jsonify({'data': temp,'progress':progress.tree_id})
+    except:
+        return jsonify({'data': temp,'progress':None})
+
+@app.route('/api/createprogress', methods=['POST'])
+@auth.login_required
+def create_progress():
+    tree_id = request.json.get('treeId')
+    try:
+        progress=Progress.query.filter_by(user_id=g.user.id).first()
+        progress.tree_id=tree_id
+        return jsonify({'ok': True})
+    except:
+        try:
+            progress = Progress(user_id=g.user.id,tree_id=tree_id)
+            db.session.add(progress)
+            db.session.commit()
+            return jsonify({'ok': True})
+        except:
+            return jsonify({'ok': False})
 
 
 @app.route('/api/users', methods=['POST'])
@@ -161,6 +186,7 @@ def get_auth_token():
 @auth.login_required
 def get_resource():
     return jsonify({'data': 'Hello, %s!' % g.user.username})
+
 
 
 @ app.route('/')
@@ -213,17 +239,16 @@ class TreeView(sqla.ModelView):
     pass
     # form_excluded
 
-
 admin = Admin(app, name='Twain Admin')
 
 # Add views
 admin.add_view(UserAdmin(User, db.session))
-# admin.add_view(sqla.ModelView(Tag, db.session))
 admin.add_view(ProgressAdmin(db.session))
 admin.add_view(TreeView(Tree, db.session))
+
 
 if __name__ == '__main__':
     if not os.path.exists('db.sqlite'):
         db.create_all()
     #database_path = op.join(app_dir, app.config['DATABASE_FILE'])
-    app.run(debug=True,host='192.168.2.2')
+    app.run(debug=True,host='192.168.2.6')
