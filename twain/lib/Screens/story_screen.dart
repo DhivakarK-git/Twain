@@ -140,7 +140,8 @@ class _StoryScreenState extends State<StoryScreen> {
                     onTap: () {
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => LoginScreen(true)),
                         (route) => false,
                       );
                     }),

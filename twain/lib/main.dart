@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
               fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 1.5),
         ),
       ),
-      home: LoginScreen(),
+      home: LoginScreen(false),
     );
   }
 }

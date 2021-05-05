@@ -6,8 +6,11 @@ import 'story_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
+  final bool logout;
+  LoginScreen(this.logout);
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -16,6 +19,33 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _isHidden = false;
   String? _username = '', _password = '';
+  static String _cachedUsername = '', _cachedPassword = '';
+
+  @override
+  void initState() {
+    super.initState();
+    autoLogIn();
+  }
+
+  void autoLogIn() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? username = prefs.getString('username');
+    final String? password = prefs.getString('password');
+    _cachedPassword = password != null ? password : '';
+    _cachedUsername = username != null ? username : '';
+    if (!widget.logout &&
+        _cachedUsername.isNotEmpty &&
+        _cachedPassword.isNotEmpty) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  StoryScreen(_cachedUsername, _cachedPassword)));
+    } else {
+      _cachedPassword = '';
+      _cachedUsername = '';
+    }
+  }
 
   Future<http.Response> login() async {
     var auth = 'Basic ' + base64Encode(utf8.encode('$_username:$_password'));
@@ -215,7 +245,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             final response = await login();
+                            final SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
                             if (response.statusCode == 200) {
+                              _cachedUsername = _username!;
+                              _cachedPassword = _password!;
+                              prefs.setString('username', _cachedUsername);
+                              prefs.setString('password', _cachedPassword);
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(

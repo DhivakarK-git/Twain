@@ -28,6 +28,7 @@ dependencies:
   google_fonts: ^2.0.0
   http: ^0.13.1
   loading_animations: ^2.2.0
+  shared_preferences: ^2.0.5
 
 dev_dependencies:
   flutter_test:
