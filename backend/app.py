@@ -12,14 +12,11 @@ from itsdangerous import (TimedJSONWebSignatureSerializer
 
 from flask_cors import CORS
 
-# initialization
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'the quick brown fox jumps over the lazy dog'
-#app.config['DATABASE_FILE'] = 'sample_db.sqlite'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
-# extensions
 db = SQLAlchemy(app)
 auth = HTTPBasicAuth()
 
@@ -59,15 +56,9 @@ class User(db.Model):
 
 class Tree(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    # name = db.Column(db.String(64))
     value = db.Column(db.String(56))
     description = db.Column(db.Text)
     question = db.Column(db.String(108))
-    # left_id = db.Column(db.Integer, db.ForeignKey('tree.id'))
-    # left = db.relationship('Tree', remote_side=[id], backref='parent')
-    # right_id = db.Column(db.Integer, db.ForeignKey('tree.id'))
-    # right = db.relationship('Tree', remote_side=[id], backref='parent')
-    #value = db.column(db.Text)
     parent_id = db.Column(db.Integer, db.ForeignKey('tree.id'))
     parent = db.relationship('Tree', remote_side=[id,
                                                   question], backref='children')
@@ -86,17 +77,12 @@ class Tree(db.Model):
 class Progress(db.Model):
     __tablename__ = 'progress'
     id = db.Column(db.Integer, primary_key=True)
-    # title = db.Column(db.String(120))
-    # text = db.Column(db.Text, nullable=False)
-    # date = db.Column(db.DateTime)
 
     user_id = db.Column(db.Integer(), db.ForeignKey(User.id))
     user = db.relationship(User, backref='progress')
 
     tree_id = db.Column(db.Integer(), db.ForeignKey(Tree.id), nullable=True)
     tree = db.relationship(Tree, backref='progress')
-    # tree = db.relationship(Tree, backref='node')
-    # tree = db.relationship('Tag', secondary=post_tags_table)
 
     def save_to_db(self):
         db.session.add(self)
@@ -108,10 +94,8 @@ class Progress(db.Model):
 
 @auth.verify_password
 def verify_password(username_or_token, password):
-    # first try to authenticate by token
     user = User.verify_auth_token(username_or_token)
     if not user:
-        # try to authenticate with username/password
         user = User.query.filter_by(username=username_or_token).first()
         if not user or not user.verify_password(password):
             return False
@@ -203,23 +187,10 @@ class UserAdmin(sqla.ModelView):
 
 # Customized Post model admin
 class ProgressAdmin(sqla.ModelView):
-    # Visible columns in the list view
-    # column_exclude_list = ['text']
-
-    # List of columns that can be sorted. For 'user' column, use User.username as
-    # a column.
-
     column_sortable_list = ('user',)
-
-    # Rename 'title' columns to 'Post Title' in list view
     column_labels = dict(title='Progress Title')
 
     column_searchable_list = (User.username,)
-
-    # column_filters = ('user',filters.FilterLike(Post.title, 'Fixed Title', options=(('test1', 'Test 1'), ('test2', 'Test 2'))))
-
-    # Pass arguments to WTForms. In this case, change label for text field to
-    # be 'Big Text' and add required() validator.
     form_args = dict(
         text=dict(label='Big Text', validators=[validators.required()])
     )
@@ -231,7 +202,6 @@ class ProgressAdmin(sqla.ModelView):
     }
 
     def __init__(self, session):
-        # Just call parent class with predefined model.
         super(ProgressAdmin, self).__init__(Progress, session)
 
 
@@ -250,5 +220,4 @@ admin.add_view(TreeView(Tree, db.session))
 if __name__ == '__main__':
     if not os.path.exists('db.sqlite'):
         db.create_all()
-    #database_path = op.join(app_dir, app.config['DATABASE_FILE'])
-    app.run(debug=True,host='192.168.2.6')
+    app.run()
