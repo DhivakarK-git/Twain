@@ -279,7 +279,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => LoginScreen()));
+                                      builder: (context) =>
+                                          LoginScreen(false)));
                             } else
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
@@ -336,7 +337,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => LoginScreen()));
+                                  builder: (context) => LoginScreen(false)));
                         },
                         child: Text(
                           'Login.',
