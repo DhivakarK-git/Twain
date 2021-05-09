@@ -1,15 +1,15 @@
 # Twain
 A mobile app which aims to implement a fun CYOA(Choose Your Own Adventure) game where the user decides his destiny based on a turn of events in the storyline!
 
-FrameWorks and Libraries Used:- 
+## FrameWorks and Libraries Used:- 
 
---> Flask - a micro Web WSGI(Web server gateway interface) Backend Framework for building customizable apps in python
+### Flask - a micro Web WSGI(Web server gateway interface) Backend Framework for building customizable apps in python
 
 
 ![Hnet com-image](https://user-images.githubusercontent.com/60535124/117579716-c6a20780-b111-11eb-80a9-0657feaacb63.png)
 
 
---> Flutter - a frontend franework written in dart for for effectively buliding of UI for web, android and IOS all from a single codebase! 
+### Flutter - a frontend franework written in dart for for effectively buliding of UI for web, android and IOS all from a single codebase! 
 
 
 ![Hnet com-image (1)](https://user-images.githubusercontent.com/60535124/117579764-036dfe80-b112-11eb-8db8-723f35fdeb38.png)
@@ -79,7 +79,7 @@ Sample About us Pop-up Activity:-
 ![i02_aboutus](https://user-images.githubusercontent.com/60535124/117580131-0bc73900-b114-11eb-8507-563db5252401.jpg)
 
 
-Future Improvements:- 
+### Future Improvements:- 
 
 -> Add more stories
 
