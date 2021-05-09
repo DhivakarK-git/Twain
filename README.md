@@ -6,50 +6,70 @@ FrameWorks and Libraries Used:-
 --> Flask - a micro Web WSGI(Web server gateway interface) Backend Framework for building customizable apps in python
 
 
+![Hnet com-image](https://user-images.githubusercontent.com/60535124/117579716-c6a20780-b111-11eb-80a9-0657feaacb63.png)
+
 
 --> Flutter - a frontend franework written in dart for for effectively buliding of UI for web, android and IOS all from a single codebase! 
-![image](https://user-images.githubusercontent.com/60535124/117575773-e8df5980-b100-11eb-8c0d-0e08e5364bbe.png)
+
+
+![Hnet com-image (1)](https://user-images.githubusercontent.com/60535124/117579764-036dfe80-b112-11eb-8db8-723f35fdeb38.png)
+
 
 
 Some UI screenshots from the App:- 
 
 User login:- 
 
-![login](https://user-images.githubusercontent.com/60535124/117577782-e54fd080-b108-11eb-802d-2e07420dcea8.jpg)
+![i06_login](https://user-images.githubusercontent.com/60535124/117580091-d6bae680-b113-11eb-987d-c02afef0b843.jpg)
 
 
 Invalid Login Prompt:- 
 
-![invalidlogin](https://user-images.githubusercontent.com/60535124/117577790-ebde4800-b108-11eb-8ad2-37a326810889.jpg)
+
+![i04_invalidlogin](https://user-images.githubusercontent.com/60535124/117580095-dd495e00-b113-11eb-88b7-d7f1f5bf8d96.jpg)
 
 
 Register User Screen :- 
 
-![register](https://user-images.githubusercontent.com/60535124/117577797-f26cbf80-b108-11eb-926c-b08cbbae6f5a.jpg)
+
+![i08_register](https://user-images.githubusercontent.com/60535124/117580098-e3d7d580-b113-11eb-9c9d-01ce1810cbbe.jpg)
 
 
 Story Description Screen:- 
 
-![desc](https://user-images.githubusercontent.com/60535124/117577811-fbf62780-b108-11eb-9746-d3a2c7dad428.jpg)
+
+![i03_desc](https://user-images.githubusercontent.com/60535124/117580105-ea664d00-b113-11eb-8767-ba72e5a89556.jpg)
 
 
 Question Activity Screen:- 
 
-![question](https://user-images.githubusercontent.com/60535124/117579207-948fa600-b10f-11eb-84db-7a53395b2e45.jpg)
+
+![i07_question](https://user-images.githubusercontent.com/60535124/117580109-f05c2e00-b113-11eb-8057-bdf18dfe34dd.jpg)
+
 
 Left Choice Swipe Activity:- 
 
-![left](https://user-images.githubusercontent.com/60535124/117579218-9b1e1d80-b10f-11eb-93c5-076d553fb738.jpg)
+
+![i05_left](https://user-images.githubusercontent.com/60535124/117580116-f3efb500-b113-11eb-8715-19e51e8a96b4.jpg)
+
 
 Right choice Swipe Activity:-
 
-![right](https://user-images.githubusercontent.com/60535124/117579225-a113fe80-b10f-11eb-8b67-c64257c9ba44.jpg)
+
+![i09_right](https://user-images.githubusercontent.com/60535124/117580118-f81bd280-b113-11eb-9e5f-c703f5237cc0.jpg)
+
 
 Navigation drawer Activity:- 
 
-![sidepanel](https://user-images.githubusercontent.com/60535124/117579243-ab35fd00-b10f-11eb-9dae-58e32449aa05.jpg)
+
+![i10_sidepanel](https://user-images.githubusercontent.com/60535124/117580133-11248380-b114-11eb-9e43-1d902db612dc.jpg)
 
 Sample About us Pop-up Activity:- 
 
-![aboutus](https://user-images.githubusercontent.com/60535124/117579262-b7ba5580-b10f-11eb-9f9d-d266da9dc6d5.jpg)
+
+![i02_aboutus](https://user-images.githubusercontent.com/60535124/117580131-0bc73900-b114-11eb-8507-563db5252401.jpg)
+
+
+
+
 
