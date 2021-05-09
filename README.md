@@ -23,10 +23,12 @@ User login:-
 ![i06_login](https://user-images.githubusercontent.com/60535124/117580091-d6bae680-b113-11eb-987d-c02afef0b843.jpg)
 
 
+
 Invalid Login Prompt:- 
 
 
 ![i04_invalidlogin](https://user-images.githubusercontent.com/60535124/117580095-dd495e00-b113-11eb-88b7-d7f1f5bf8d96.jpg)
+
 
 
 Register User Screen :- 
@@ -35,10 +37,12 @@ Register User Screen :-
 ![i08_register](https://user-images.githubusercontent.com/60535124/117580098-e3d7d580-b113-11eb-9c9d-01ce1810cbbe.jpg)
 
 
+
 Story Description Screen:- 
 
 
 ![i03_desc](https://user-images.githubusercontent.com/60535124/117580105-ea664d00-b113-11eb-8767-ba72e5a89556.jpg)
+
 
 
 Question Activity Screen:- 
@@ -47,10 +51,12 @@ Question Activity Screen:-
 ![i07_question](https://user-images.githubusercontent.com/60535124/117580109-f05c2e00-b113-11eb-8057-bdf18dfe34dd.jpg)
 
 
+
 Left Choice Swipe Activity:- 
 
 
 ![i05_left](https://user-images.githubusercontent.com/60535124/117580116-f3efb500-b113-11eb-8715-19e51e8a96b4.jpg)
+
 
 
 Right choice Swipe Activity:-
@@ -59,10 +65,13 @@ Right choice Swipe Activity:-
 ![i09_right](https://user-images.githubusercontent.com/60535124/117580118-f81bd280-b113-11eb-9e5f-c703f5237cc0.jpg)
 
 
+
 Navigation drawer Activity:- 
 
 
 ![i10_sidepanel](https://user-images.githubusercontent.com/60535124/117580133-11248380-b114-11eb-9e43-1d902db612dc.jpg)
+
+
 
 Sample About us Pop-up Activity:- 
 
