@@ -82,6 +82,8 @@ Sample About us Pop-up Activity:-
 Future Improvements:- 
 
 -> Add more stories
+
 -> call google Authentication API to sign in google users
+
 -> bug fixes and security improvements
 
