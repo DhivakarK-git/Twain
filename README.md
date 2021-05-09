@@ -79,6 +79,9 @@ Sample About us Pop-up Activity:-
 ![i02_aboutus](https://user-images.githubusercontent.com/60535124/117580131-0bc73900-b114-11eb-8507-563db5252401.jpg)
 
 
+Future Improvements:- 
 
-
+-> Add more stories
+-> call google Authentication API to sign in google users
+-> bug fixes and security improvements
 
