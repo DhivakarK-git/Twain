@@ -15,7 +15,6 @@ A mobile app which aims to implement a fun CYOA(Choose Your Own Adventure) game 
 
 
 
-
 Some UI screenshots from the App:- 
 
 User login:- 
